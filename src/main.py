@@ -59,7 +59,8 @@ def parse_args():
 	parser.add_argument('--directed', dest='directed', action='store_true',
 	                    help='Graph is (un)directed. Default is undirected.')
 	parser.add_argument('--undirected', dest='undirected', action='store_false')
-	parser.set_defaults(directed=False)
+	#parser.set_defaults(directed=False)
+	parser.set_defaults(directed=True)
 
 	return parser.parse_args()
 
@@ -85,7 +86,8 @@ def learn_embeddings(walks):
 	'''
 	walks = [map(str, walk) for walk in walks]
 	model = Word2Vec(walks, size=args.dimensions, window=args.window_size, min_count=0, sg=1, workers=args.workers, iter=args.iter)
-	model.save_word2vec_format(args.output)
+	#model.save_word2vec_format(args.output)
+	model.wv.save_word2vec_format(args.output)
 	
 	return
 
@@ -96,9 +98,13 @@ def main(args):
 	nx_G = read_graph()
 	G = node2vec.Graph(nx_G, args.directed, args.p, args.q)
 	G.preprocess_transition_probs()
-	walks = G.simulate_walks(args.num_walks, args.walk_length)
+	walks = G.simulate_walks(args.num_walks, args.walk_length, False)
+	print("Starting learning")
 	learn_embeddings(walks)
+	print("Finish")
 
 if __name__ == "__main__":
 	args = parse_args()
 	main(args)
+
+# python2 src/main.py  --input=web-sci/biology.edgelist.csv --output=web-sci/biology-undirected-bfs.emd --dimensions=5 
