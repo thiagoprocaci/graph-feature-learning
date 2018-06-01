@@ -11,6 +11,31 @@ class Graph():
         self.q = q
 
 
+    def dfsTree(self, startNode):
+        G = self.G
+        walk = []
+        queue = []
+        G.node[startNode]['visited'] = True
+        queue.append(startNode)
+        while (len(queue) > 0): 
+            node = queue.pop(0)
+            walk.append(node)
+            unvisitedNodes = self.getUnvisitedChildNode(node)
+            for n in unvisitedNodes:
+                G.node[n]['visited'] = True
+                queue.append(n)
+            if(len(walk) > 30):
+                break
+        return walk
+    
+    def getUnvisitedChildNode(self, node):
+        unvisitedNodes = []
+        neighbors = self.G.neighbors(node)
+        for n in neighbors:
+            if(self.G.node[n].get('visited') is not None):
+                unvisitedNodes.append(n)
+        return unvisitedNodes
+
     def dfsLevel2(self, startNode):
         G = self.G
         walk = []
@@ -42,9 +67,12 @@ class Graph():
         '''
         Performs the Breadth-First Search for the first level
         '''
-        #walk = self.bfsLevel1(start_node)
-        walk = self.dfsLevel2(start_node)
-
+        walk = self.bfsLevel1(start_node)
+        #walk = self.dfsLevel2(start_node) #usando nos testes
+        #walk = self.dfsTree(start_node)
+        #print start_node
+        #print walk
+        #print '-----'
         return walk
 
     def node2vec_walk(self, walk_length, start_node):

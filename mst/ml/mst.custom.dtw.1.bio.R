@@ -3,10 +3,10 @@ library(ggplot2)
 library(pROC)
 
 
-fileToSave = "biology-auc"
+fileToSave = "biology-test-auc"
 
 
-dataNode2Vec = read.csv("../emd/mst.custom.dtw.1.bio.emd", header = FALSE, sep = " ", dec = ".")
+dataNode2Vec = read.csv("../emd/test.emd", header = FALSE, sep = " ", dec = ".")
 colnames(dataNode2Vec)[1] <- "id"
 
 dataUser = read.csv("biology.class.csv", header = TRUE, sep = ";", dec = ".")

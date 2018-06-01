@@ -3,9 +3,9 @@ library(ggplot2)
 library(pROC)
 
 
-fileToSave = "biology-directed-node2vec-q0.5-p1.5-auc"
+fileToSave = "biology-directed-node2vec-bfs-1-auc"
 
-dataNode2Vec = read.csv("biology-directed-node2vec-q0.5-p1.5.emd", header = FALSE, sep = " ", dec = ".")
+dataNode2Vec = read.csv("biology-directed-bfs-1.emd", header = FALSE, sep = " ", dec = ".")
 colnames(dataNode2Vec)[1] <- "id"
 
 

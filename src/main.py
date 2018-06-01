@@ -60,7 +60,10 @@ def parse_args():
 	                    help='Graph is (un)directed. Default is undirected.')
 	parser.add_argument('--undirected', dest='undirected', action='store_false')
 	#parser.set_defaults(directed=False)
-	parser.set_defaults(directed=True)
+
+	parser.add_argument('--executionType', dest='executionType', type=str, default="node2vec")
+
+	parser.set_defaults(directed=False)
 
 	return parser.parse_args()
 
@@ -95,10 +98,14 @@ def main(args):
 	'''
 	Pipeline for representational learning for all nodes in a graph.
 	'''
+
 	nx_G = read_graph()
 	G = node2vec.Graph(nx_G, args.directed, args.p, args.q)
 	G.preprocess_transition_probs()
-	walks = G.simulate_walks(args.num_walks, args.walk_length, False)
+	nodeToVec = False
+	if(args.executionType == 'node2vec'):
+		nodeToVec = True
+	walks = G.simulate_walks(args.num_walks, args.walk_length, nodeToVec)
 	print("Starting learning")
 	learn_embeddings(walks)
 	print("Finish")
