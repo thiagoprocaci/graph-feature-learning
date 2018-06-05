@@ -11,7 +11,7 @@ class Graph():
         self.q = q
 
 
-    def dfsTree(self, startNode):
+    def bfsTree(self, startNode):
         G = self.G
         walk = []
         queue = []
@@ -24,8 +24,8 @@ class Graph():
             for n in unvisitedNodes:
                 G.node[n]['visited'] = True
                 queue.append(n)
-            if(len(walk) > 30):
-                break
+            #if(len(walk) > 30):
+                #break
         return walk
     
     def getUnvisitedChildNode(self, node):
@@ -69,7 +69,7 @@ class Graph():
         '''
         walk = self.bfsLevel1(start_node)
         #walk = self.dfsLevel2(start_node) #usando nos testes
-        #walk = self.dfsTree(start_node)
+        #walk = self.bfsTree(start_node)
         #print start_node
         #print walk
         #print '-----'

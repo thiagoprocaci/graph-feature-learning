@@ -63,7 +63,7 @@ def parse_args():
 
 	parser.add_argument('--executionType', dest='executionType', type=str, default="node2vec")
 
-	parser.set_defaults(directed=False)
+	parser.set_defaults(directed=True)
 
 	return parser.parse_args()
 
