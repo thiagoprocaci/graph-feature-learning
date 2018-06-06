@@ -30,7 +30,20 @@ trainIndex <- createDataPartition(data$class2, p = .6,
 dataTrain <- data[ trainIndex,]
 dataTest  <- data[-trainIndex,]
 
+print(head(data))
+totalAttr = as.integer(args[4]) #dimensions
+i = 2
+form = "class2 ~ "
+while(i <= (totalAttr + 1) ){
+  v = paste("V", as.character(i), sep = "")
+  form = paste(form, v)
+  i = i + 1
+  if(i <= (totalAttr + 1)) {
+    form = paste(form, "+")
+  }
+}
 
+print(form)
 
 runModel = TRUE
 
@@ -44,7 +57,7 @@ if(runModel) {
   
   
   
-  modelFit <- train(class2 ~ V2 + V3 + V4 + V5 + V6, data = dataTrain, 
+  modelFit <- train(as.formula(form), data = dataTrain, 
                     method = "gbm",  
                     trControl = fitControl,
                     #tuneGrid = grid,
@@ -52,7 +65,6 @@ if(runModel) {
                     verbose = FALSE)
   print(modelFit)
   
-print(head(data))
   
   
   
