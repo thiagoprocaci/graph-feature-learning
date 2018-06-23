@@ -5,7 +5,7 @@ CURR_DIR=$(pwd)
 
 #echo "$CURR_DIR"
 
-DIM=25
+DIM=30
 OUTPUT_DIR="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/scripts/top20"
 BIOLOGY_CLASS_FILE="biology.class.csv"
 CHEMISTRY_CLASS_FILE="chemistry.class.csv"
