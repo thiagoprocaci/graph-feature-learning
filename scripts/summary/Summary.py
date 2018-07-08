@@ -18,6 +18,8 @@ class Result:
 			self.method = "LINE First Order"
 		if "line-order-2" in fileName:
 			self.method = "LINE Second Order"
+		if "ahead" in fileName:
+			self.method = "Go Ahead When Necessary"
 		array = fileName.split(".")
 		self.dim = int(array[len(array) - 2])
 		array = fileName.split("/")
