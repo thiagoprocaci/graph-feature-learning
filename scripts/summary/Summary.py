@@ -45,6 +45,22 @@ def export2Html(resultList):
 	html = html + "</table></body></html>"
 	return html
 
+def export2CSV(resultList):
+	communityList = getCommunities(resultList)
+	dimensionList = getDimensions(resultList)
+	sortedList = sorted(resultList, key=lambda r: r.dim)
+
+	csv = 'Community;Method;Dimension;AUC;File\n'
+
+	csvTemplate = "{0};{1};{2};{3};{4}\n"
+	for community in communityList:
+		for dim in dimensionList:
+			sortedList = [x for x in resultList if x.dim == dim and x.community == community]
+			sortedList = sorted(sortedList, key=lambda r: r.fileName)
+			for r in sortedList:
+				csv = csv + csvTemplate.format(r.community, r.method, r.dim, r.auc, r.fileName)
+	return csv
+
 def getCommunities(resultList):
 	communityList = []
 	for r in resultList:
@@ -63,10 +79,12 @@ def getDimensions(resultList):
 def parse_args():
 	parser = argparse.ArgumentParser(description="Run Summary")
 	parser.add_argument('--folder', dest='folder', type=str, default="")
+	parser.add_argument('--output', dest='output', type=str, default="")
 	return parser.parse_args()
 
 
 def main(args):
+
 	aucfileList = [join(args.folder, f) for f in listdir(args.folder) if isfile(join(args.folder, f)) and isAUC(join(args.folder, f))]
 	resultList = []
 	for file in aucfileList:
@@ -75,7 +93,14 @@ def main(args):
 			r = Result(file, auc)
 			resultList.append(r)
 	html = export2Html(resultList)
-	print(html)
+	csv = export2CSV(resultList)
+	
+	with open(args.output + ".html", "w") as textFile:
+		textFile.write(html)
+	with open(args.output + ".csv", "w") as textFile:
+		textFile.write(csv)
+
+	#print(html)
 	#for r in resultList:
 	#	print r.fileName + " " + r.method + " " + r.dim + " " + r.auc + " " + r.community
 	#print(len(aucfiles))
