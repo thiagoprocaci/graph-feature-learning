@@ -7,12 +7,12 @@ CURR_DIR=$(pwd)
 
 FEATURE_LEARNING_NODE_2_VEC="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/src/main.py"
 FEATURE_LEARNING_LINE_DIR="/home/thiago/Área de Trabalho/tbp/workspace/LINE/linux/"
-EDGE_LIST_BIOLOGY="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/web-sci/biology.edgelist.csv"
-EDGE_LIST_CHEMISTRY="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/web-sci/chemistry.edgelist.csv"
+EDGE_LIST_BIOLOGY="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/resources/biology.edgelist.csv"
+EDGE_LIST_CHEMISTRY="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/resources/chemistry.edgelist.csv"
 DIM=30
 OUTPUT_DIR="/home/thiago/Área de Trabalho/tbp/workspace/node2vec/scripts/"
-BIOLOGY_CLASS_FILE="../../web-sci/biology.class.csv"
-CHEMISTRY_CLASS_FILE="../../web-sci/chemistry.class.csv"
+BIOLOGY_CLASS_FILE="../../resources/biology.class.csv"
+CHEMISTRY_CLASS_FILE="../../resources/chemistry.class.csv"
 
 
 
