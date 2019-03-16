@@ -8,8 +8,8 @@ Precisely, it is an evolution of: https://github.com/thiagoprocaci/diff-ourstand
 
 ## Environment
 
-- R version 3.2.2 (available at https://www.r-project.org/)
-- Python 2
+- R version 3.4.2 (available at https://www.r-project.org/)
+- Python 2.7
 - Ubuntu version 16.04.4 LTS
 - Install LINE (https://github.com/tangjianpku/LINE)
 - Install Node2Vec
